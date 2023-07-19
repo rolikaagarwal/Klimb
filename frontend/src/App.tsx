@@ -1,8 +1,8 @@
 import "./App.css";
-import SuccessPage from "./components/SucessPage";
+import DefaultPage from "./components/DefaultPage";
 
 function App() {
-  return <><SuccessPage /></>;
+  return <DefaultPage />;
 }
 
 export default App;
