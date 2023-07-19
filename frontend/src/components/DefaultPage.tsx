@@ -2,9 +2,10 @@ import "./style.css";
 import { useState } from "react";
 import { ChangeEvent } from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
-type responseType = {
-  message : string,
-}
+import {  toast } from 'react-toastify';
+
+
+
 const DefaultPage: React.FC = () => {
   const [apidata, setapiData] = useState();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -13,16 +14,41 @@ const DefaultPage: React.FC = () => {
     console.log("Selected file:", file);
     setSelectedFile(file);
   };
- const handleApi = async() => {
-  const response = await fetch ("/api/upload", {
-    method : 'POST'
-  })
-  if(!response.ok){
-    throw new Error("API Failed")
-  }
-  const data:responseType = await response.json()  ;
-  
- }
+  const handleApi = async () => {
+    try {
+      if (!selectedFile) {
+        alert('Please select a file.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Error fetching");
+      }
+    
+      const result = await res.json();
+      toast.success('Success! Your action was successful.', {
+        position: 'top-right', 
+        autoClose: 3000,
+        hideProgressBar: false, 
+        closeOnClick: true, 
+        pauseOnHover: true, 
+        draggable: true,
+        progress: undefined, 
+        className: 'custom-toast',
+      });
+      setapiData(result);
+    } catch (err) {
+      console.log(err);
+}
+};
 
   return (
     <div className="default">
