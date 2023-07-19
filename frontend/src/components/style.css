@@ -1,0 +1,35 @@
+.success{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1px;
+}
+.success h1{
+    color: green;
+}
+.default{
+    /* color: red; */
+    display: flex;
+    
+    
+    
+}
+.fileuploaded{
+ margin-top: 20px;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+.uploadicon{
+    font-size: 40px;
+}
+.points{
+    /* background-color: blanchedalmond; */
+    margin-left: 0px;
+}
