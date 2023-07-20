@@ -2,9 +2,8 @@ import "./style.css";
 import { useState } from "react";
 import { ChangeEvent } from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
-import {  toast } from 'react-toastify';
-
-
+import { toast } from "react-toastify";
+import { Link } from 'react-router-dom';
 
 const DefaultPage: React.FC = () => {
   const [apidata, setapiData] = useState();
@@ -17,12 +16,12 @@ const DefaultPage: React.FC = () => {
   const handleApi = async () => {
     try {
       if (!selectedFile) {
-        alert('Please select a file.');
+        alert("Please select a file.");
         return;
       }
 
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append("file", selectedFile);
 
       const res = await fetch("/api/upload", {
         method: "POST",
@@ -32,23 +31,23 @@ const DefaultPage: React.FC = () => {
       if (!res.ok) {
         throw new Error("Error fetching");
       }
-    
+
       const result = await res.json();
-      toast.success('Success! Your action was successful.', {
-        position: 'top-right', 
+      toast.success("Success! Your action was successful.", {
+        position: "top-right",
         autoClose: 3000,
-        hideProgressBar: false, 
-        closeOnClick: true, 
-        pauseOnHover: true, 
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
         draggable: true,
-        progress: undefined, 
-        className: 'custom-toast',
+        progress: undefined,
+        className: "custom-toast",
       });
       setapiData(result);
     } catch (err) {
       console.log(err);
-}
-};
+    }
+  };
 
   return (
     <div className="default">
@@ -59,7 +58,9 @@ const DefaultPage: React.FC = () => {
               <BsFillCloudUploadFill className="uploadicon" />
             </p>
             <p>{selectedFile.name}</p>
-            <button onClick={handleApi}>upload</button>
+            <Link to="/Success">
+              <button onClick={handleApi}>upload</button>
+            </Link>
           </div>
           <div>
             <p className="points">web support upto 1000 records in a file</p>
