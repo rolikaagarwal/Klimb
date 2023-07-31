@@ -1,4 +1,4 @@
 # Klimb 
 
-## TECHSTACK USED - 
+## TECHSTACK USED 
 `NODE JS` `EXPRESS JS` `REACT JS` `MongoDB`
